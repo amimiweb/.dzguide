@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DZGUIDE | دليلك في الجزائر</title>
+<style>
+:root {
+  --bg:#f5f7fb; --card:#fff; --text:#172033;
+  --muted:#748096; --primary:#087f5b; --soft:#e4f5ed;
+  --border:#e6eaf0; --shadow:0 12px 35px #15233a0b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;background:var(--bg);
+color:var(--text);line-height:1.8;transition:.25s}
+body.dark{--bg:#101720;--card:#182330;--text:#f0f5fb;
+--muted:#a6b2c3;--primary:#4cdb9f;--soft:#203c34;--border:#293747;
+--shadow:0 12px 35px #0003}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+header{background:var(--card);border-bottom:1px solid var(--border);
+position:sticky;top:0;z-index:10}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px;color:var(--primary)}
+.logo span{color:var(--text)}
+.navlinks{display:flex;align-items:center;gap:23px;font-size:14px}
+.navlinks a:hover{color:var(--primary)}
+.actions{display:flex;gap:9px;align-items:center}
+.btn{border:0;border-radius:12px;padding:11px 17px;font-weight:700}
+.primary{background:var(--primary);color:white}
+.outline{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.iconbtn{width:42px;height:42px;border:1px solid var(--border);
+border-radius:12px;background:var(--card);color:var(--text)}
+.hero{padding:68px 0 45px;background:linear-gradient(135deg,var(--soft),var(--bg))}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
+.eyebrow{display:inline-block;background:var(--soft);color:var(--primary);
+padding:5px 13px;border-radius:30px;font-size:13px;font-weight:bold}
+h1{font-size:clamp(34px,5vw,57px);line-height:1.25;margin:18px 0}
+.hero p{color:var(--muted);font-size:17px;max-width:590px}
+.searchbox{background:var(--card);padding:12px;border-radius:18px;
+display:flex;gap:10px;box-shadow:var(--shadow);margin-top:25px}
+.searchbox input,.searchbox select{min-width:0;width:100%;border:0;
+outline:0;background:transparent;color:var(--text);padding:9px}
+.hero-art{min-height:260px;border-radius:28px;background:var(--primary);
+color:white;padding:28px;display:flex;flex-direction:column;justify-content:space-between;
+box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-art:after{content:"DZ";font-size:170px;font-weight:900;opacity:.09;
+position:absolute;left:0;bottom:-55px}
+.art-icon{font-size:53px}
+.art-title{font-size:25px;font-weight:800}
+.art-sub{opacity:.85;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.stat{background:var(--card);padding:15px;border-radius:15px;text-align:center;
+border:1px solid var(--border)}
+.stat strong{display:block;font-size:23px;color:var(--primary)}
+.stat small{color:var(--muted)}
+section{padding:55px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;
+gap:20px;margin-bottom:25px}
+.section-head h2{font-size:27px;margin:0}
+.section-head p{color:var(--muted);margin:5px 0 0}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}
+.category{border:1px solid var(--border);background:var(--card);color:var(--text);
+border-radius:17px;padding:20px 8px;text-align:center;transition:.2s}
+.category:hover,.category.active{border-color:var(--primary);transform:translateY(-3px);
+background:var(--soft)}
+.category .emoji{font-size:30px;display:block;margin-bottom:7px}
+.category strong{font-size:14px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.filters select,.filters input{background:var(--card);color:var(--text);
+border:1px solid var(--border);border-radius:11px;padding:10px 12px;outline:none}
+.filters input{flex:1;min-width:180px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}
+.business{background:var(--card);border:1px solid var(--border);
+border-radius:19px;overflow:hidden;box-shadow:var(--shadow);transition:.2s}
+.business:hover{transform:translateY(-4px)}
+.cover{height:135px;display:flex;align-items:center;justify-content:center;
+font-size:53px;background:var(--soft);position:relative}
+.demo{position:absolute;right:12px;top:12px;background:#ffffffdf;color:#253044;
+font-size:11px;padding:3px 9px;border-radius:30px}
+.fav{position:absolute;left:12px;top:12px;background:#ffffffed;border:0;
+border-radius:50%;width:37px;height:37px;font-size:20px;color:#334155}
+.fav.saved{color:#e23b65}
+.business-body{padding:17px}
+.business h3{margin:0 0 5px;font-size:18px}
+.meta{color:var(--muted);font-size:13px}
+.rating{color:#e7a329;font-weight:bold;font-size:13px}
+.description{color:var(--muted);font-size:14px;min-height:48px}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;
+gap:8px;border-top:1px solid var(--border);padding-top:13px;margin-top:12px}
+.card-bottom .btn{padding:8px 11px;font-size:13px}
+.empty{display:none;text-align:center;padding:35px;color:var(--muted);
+background:var(--card);border-radius:16px}
+.promo{background:var(--primary);color:white;border-radius:25px;padding:35px;
+display:flex;align-items:center;justify-content:space-between;gap:25px}
+.promo h2{margin:0;font-size:27px}
+.promo p{opacity:.85;margin-bottom:0}
+.promo .btn{background:white;color:#087f5b;white-space:nowrap}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{padding:23px;background:var(--card);border:1px solid var(--border);
+border-radius:17px}
+.step .num{font-size:27px;color:var(--primary);font-weight:900}
+.step h3{margin:5px 0}
+.step p{color:var(--muted);font-size:14px}
+.faq details{background:var(--card);border:1px solid var(--border);
+padding:16px 19px;border-radius:13px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:bold}
+.faq details p{color:var(--muted)}
+footer{background:var(--card);border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+footer p{color:var(--muted);font-size:13px;margin:4px 0}
+.modal{position:fixed;inset:0;background:#06111dcc;z-index:30;
+display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modal-box{background:var(--card);color:var(--text);width:min(550px,100%);
+max-height:90vh;overflow:auto;border-radius:22px;padding:25px}
+.modal-head{display:flex;justify-content:space-between;align-items:center}
+.modal-head h2{margin:0}
+.close{background:transparent;color:var(--text);border:0;font-size:27px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:17px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:bold}
+.field input,.field select,.field textarea{padding:11px;border-radius:10px;
+border:1px solid var(--border);background:var(--bg);color:var(--text);width:100%}
+.form-note{font-size:12px;color:var(--muted)}
+.toast{position:fixed;bottom:20px;left:20px;background:var(--text);color:var(--bg);
+padding:12px 18px;border-radius:12px;display:none;z-index:50;max-width:90%}
+.toast.show{display:block}
+@media(max-width:850px){
+ .navlinks{display:none}.hero-grid{grid-template-columns:1fr}
+ .hero-art{min-height:190px}.categories{grid-template-columns:repeat(3,1fr)}
+ .cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+ .nav{height:65px}.logo{font-size:22px}.actions .btn{padding:9px;font-size:12px}
+ .hero{padding:42px 0 30px}.searchbox{flex-direction:column}
+ .stats{gap:7px}.stat{padding:10px 4px}.stat strong{font-size:20px}
+ section{padding:38px 0}.section-head h2{font-size:23px}
+ .categories{gap:8px}.category{padding:13px 4px}.category strong{font-size:12px}
+ .cards{grid-template-columns:1fr}.promo{padding:24px;flex-direction:column;align-items:flex-start}
+ .steps{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">DZ<span>GUIDE</span> 🇩🇿</a>
+    <nav class="navlinks">
+      <a href="#categories">التصنيفات</a>
+      <a href="#directory">اكتشف الأنشطة</a>
+      <a href="#how">كيف يعمل؟</a>
+      <a href="#faq">الأسئلة</a>
+    </nav>
+    <div class="actions">
+      <button class="iconbtn" id="themeBtn" aria-label="تغيير المظهر">🌙</button>
+      <button class="btn primary" id="openForm">+ أضف نشاطك</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <span class="eyebrow">🇩🇿 دليلك المحلي في الجزائر</span>
+   <h1>كل ما تبحث عنه،<br>أقرب إليك.</h1>
+   <p>اكتشف المحلات والخدمات والمهنيين في مدينتك. مكان واحد يساعدك على الوصول إلى ما تحتاجه بسهولة.</p>
+   <div class="searchbox">
+    <input id="heroSearch" placeholder="🔎 ابحث عن مطعم، كهربائي، متجر...">
+    <select id="heroWilaya" aria-label="اختر الولاية">
+     <option value="">كل الولايات</option>
+    </select>
+    <button class="btn primary" id="searchBtn">ابحث الآن</button>
+   </div>
+   <div class="stats">
+    <div class="stat"><strong>58</strong><small>ولاية جزائرية</small></div>
+    <div class="stat"><strong id="businessCount">6</strong><small>نشاط تجريبي</small></div>
+    <div class="stat"><strong>24/7</strong><small>تصفح الدليل</small></div>
+   </div>
+  </div>
+  <div class="hero-art">
+   <div class="art-icon">🧭</div>
+   <div>
+    <div class="art-title">اكتشف ما حولك</div>
+    <div class="art-sub">محلات • خدمات • مهنيون • حرفيون</div>
+   </div>
+   <div style="position:relative;z-index:1">من الجزائر وإلى كل الجزائر ✨</div>
+  </div>
+ </div>
+</section>
+
+<section id="categories">
+ <div class="container">
+  <div class="section-head">
+   <div><h2>تصفح حسب التخصص</h2><p>اختر ما تحتاجه لتجد الأنشطة المناسبة.</p></div>
+  </div>
+  <div class="categories" id="categoryList"></div>
+ </div>
+</section>
+
+<section id="directory">
+ <div class="container">
+  <div class="section-head">
+   <div><h2>اكتشف الأنشطة</h2><p>نماذج توضيحية لشكل ملفات الأنشطة على المنصة.</p></div>
+   <button class="btn outline" id="favoritesBtn">❤️ المفضلة فقط</button>
+  </div>
+  <div class="filters">
+   <input id="filterSearch" placeholder="ابحث بالاسم أو الخدمة...">
+   <select id="filterWilaya"><option value="">كل الولايات</option></select>
+   <select id="filterCategory"><option value="">كل التصنيفات</option></select>
+   <select id="sortSelect">
+    <option value="default">الترتيب الافتراضي</option>
+    <option value="rating">الأعلى تقييمًا</option>
+    <option value="name">الاسم أبجديًا</option>
+   </select>
+  </div>
+  <div class="cards" id="businessCards"></div>
+  <div class="empty" id="emptyState">لا توجد نتائج مطابقة. جرّب تغيير البحث أو الفلاتر. 🔎</div>
+  <p class="form-note">تنبيه: الأنشطة والتقييمات المعروضة أمثلة تجريبية وليست توصيات أو بيانات مؤكدة.</p>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="promo">
+   <div><h2>هل لديك نشاط تجاري؟ 🚀</h2>
+   <p>عرّف الناس بخدماتك واجعلهم يصلون إليك بسهولة.</p></div>
+   <button class="btn" id="openForm2">أضف نشاطك مجانًا ←</button>
+  </div>
+ </div>
+</section>
+
+<section id="how">
+ <div class="container">
+  <div class="section-head"><div><h2>كيف يعمل DZGUIDE؟</h2>
+  <p>ثلاث خطوات بسيطة للبدء.</p></div></div>
+  <div class="steps">
+   <div class="step"><div class="num">01</div><h3>ابحث</h3><p>اكتب اسم الخدمة أو اختر تخصصًا وولاية.</p></div>
+   <div class="step"><div class="num">02</div><h3>قارن</h3><p>اطّلع على تفاصيل النشاط ووسائل التواصل المتاحة.</p></div>
+   <div class="step"><div class="num">03</div><h3>تواصل</h3><p>اتصل بالنشاط مباشرة إذا كانت بيانات الاتصال متوفرة.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="faq">
+ <div class="container faq">
+  <div class="section-head"><div><h2>أسئلة شائعة</h2><p>إجابات مختصرة عن المنصة.</p></div></div>
+  <details><summary>هل DZGUIDE دليل رسمي؟</summary>
+   <p>لا. هذا نموذج أولي تجريبي مستقل، وليس موقعًا حكوميًا أو دليلًا رسميًا.</p></details>
+  <details><summary>هل يمكنني إضافة نشاطي مجانًا؟</summary>
+   <p>نعم، يمكنك تجربة النموذج. في هذه النسخة لا تُرسل البيانات إلى خادم ولا تُنشر تلقائيًا.</p></details>
+  <details><summary>هل بيانات المحلات حقيقية؟</summary>
+   <p>لا، الأسماء والتقييمات المعروضة أمثلة تصميمية فقط. يجب التحقق من بيانات الأنشطة قبل إطلاق الدليل.</p></details>
+  <details><summary>كيف يصبح الموقع متاحًا للجميع؟</summary>
+   <p>نحتاج إلى استضافة، وقاعدة بيانات، ونظام لإدارة الأنشطة وحماية بيانات المستخدمين.</p></details>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container footer-inner">
+  <div><a class="logo" href="#">DZ<span>GUIDE</span> 🇩🇿</a>
+  <p>اكتشف خدمات مدينتك، بسهولة.</p></div>
+  <p>نموذج أولي تجريبي • © <span id="year"></span> DZGUIDE</p>
+ </div>
+</footer>
+
+<div class="modal" id="businessModal">
+ <div class="modal-box">
+  <div class="modal-head"><h2>أضف نشاطك مجانًا</h2>
+  <button class="close" id="closeForm" aria-label="إغلاق">×</button></div>
+  <p class="form-note">املأ المعلومات لتجربة إضافة نشاط. لن تُرسل إلى الإنترنت.</p>
+  <form id="businessForm">
+   <div class="form-grid">
+    <div class="field"><label for="ownerName">اسم النشاط *</label>
+     <input id="ownerName" required maxlength="80" placeholder="مثال: متجر النور"></div>
+    <div class="field"><label for="ownerCategory">التخصص *</label>
+     <select id="ownerCategory" required></select></div>
+    <div class="field"><label for="ownerWilaya">الولاية *</label>
+     <select id="ownerWilaya" required></select></div>
+    <div class="field"><label for="ownerPhone">رقم الهاتف (اختياري)</label>
+     <input id="ownerPhone" type="tel" placeholder="05xxxxxxxx"></div>
+    <div class="field full"><label for="ownerDescription">وصف النشاط *</label>
+     <textarea id="ownerDescription" required maxlength="250" rows="3" placeholder="ما الخدمات التي تقدمها؟"></textarea></div>
+   </div>
+   <p class="form-note">لا تدخل معلومات شخصية حساسة. الإضافة هنا للعرض التجريبي فقط.</p>
+   <button class="btn primary" type="submit" style="width:100%;margin-top:10px">تجربة إضافة النشاط</button>
+  </form>
+ </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const wilayas = [
+"أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار",
+"البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر",
+"الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة",
+"قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض",
+"إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي",
+"خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت",
+"غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس",
+"عين صالح","عين قزام","تقرت","جانت","المغير","المنيعة"
+];
+const categories = [
+{key:"food",name:"مطاعم ومقاهٍ",icon:"🍽️"},
+{key:"tech",name:"إلكترونيات",icon:"💻"},
+{key:"health",name:"صحة وطب",icon:"🩺"},
+{key:"craft",name:"حرفيون",icon:"🛠️"},
+{key:"education",name:"تعليم وتكوين",icon:"📚"},
+{key:"home",name:"خدمات منزلية",icon:"🏠"}
+];
+// بيانات تجريبية فقط؛ لا تمثل أنشطة أو تقييمات تم التحقق منها.
+let businesses = [
+{id:1,name:"مقهى المدينة",category:"food",wilaya:"وهران",rating:4.7,
+icon:"☕",description:"مثال تجريبي لمقهى يقدم المشروبات والوجبات الخفيفة."},
+{id:2,name:"عالم التقنية",category:"tech",wilaya:"الجزائر",rating:4.5,
+icon:"💻",description:"مثال تجريبي لمتجر أجهزة وإكسسوارات إلكترونية."},
+{id:3,name:"مركز العناية",category:"health",wilaya:"قسنطينة",rating:4.8,
+icon:"🩺",description:"مثال تجريبي لملف مركز صحي. تحقق من الترخيص قبل الزيارة."},
+{id:4,name:"حرفي محترف",category:"craft",wilaya:"سطيف",rating:4.6,
+icon:"🛠️",description:"مثال تجريبي لخدمات الصيانة والإصلاح."},
+{id:5,name:"فضاء المعرفة",category:"education",wilaya:"غليزان",rating:4.4,
+icon:"📚",description:"مثال تجريبي لدروس الدعم والتكوين."},
+{id:6,name:"خدمات البيت",category:"home",wilaya:"ورقلة",rating:4.3,
+icon:"🏠",description:"مثال تجريبي لخدمات منزلية متنوعة."}
+];
+let activeCategory = "";
+let onlyFavorites = false;
+const favorites = new Set();
+
+const $ = id => document.getElementById(id);
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g, c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ })[c]);
+}
+function fillSelect(id, items, firstLabel){
+ const select=$(id);
+ select.innerHTML = `<option value="">${firstLabel}</option>`+
+ items.map(x=>`<option value="${escapeHTML(x)}">${escapeHTML(x)}</option>`).join("");
+}
+["heroWilaya","filterWilaya","ownerWilaya"].forEach(id=>fillSelect(id,wilayas,"اختر الولاية"));
+["filterCategory","ownerCategory"].forEach(id=>{
+ $(id).innerHTML=(id==="filterCategory"?'<option value="">كل التصنيفات</option>':'<option value="">اختر التخصص</option>')+
+ categories.map(c=>`<option value="${c.key}">${c.icon} ${c.name}</option>`).join("");
+});
+function renderCategories(){
+ $("categoryList").innerHTML=categories.map(c=>`
+ <button class="category ${activeCategory===c.key?'active':''}" data-cat="${c.key}">
+ <span class="emoji">${c.icon}</span><strong>${c.name}</strong></button>`).join("");
+ $("categoryList").querySelectorAll("[data-cat]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+   activeCategory=activeCategory===btn.dataset.cat?"":btn.dataset.cat;
+   $("filterCategory").value=activeCategory;
+   renderCategories();renderBusinesses();
+   $("directory").scrollIntoView({behavior:"smooth"});
+  });
+ });
+}
+function renderBusinesses(){
+ let list=businesses.filter(b=>{
+  const q=$("filterSearch").value.trim().toLowerCase();
+  const haystack=(b.name+" "+b.description+" "+b.wilaya+" "+
+  categories.find(c=>c.key===b.category).name).toLowerCase();
+  return (!q||haystack.includes(q))&&
+   (!$("filterWilaya").value||b.wilaya===$("filterWilaya").value)&&
+   (!$("filterCategory").value||b.category===$("filterCategory").value)&&
+   (!onlyFavorites||favorites.has(b.id));
+ });
+ if($("sortSelect").value==="rating")list.sort((a,b)=>b.rating-a.rating);
+ if($("sortSelect").value==="name")list.sort((a,b)=>a.name.localeCompare(b.name,"ar"));
+ $("businessCards").innerHTML=list.map(b=>{
+  const cat=categories.find(c=>c.key===b.category);
+  return `<article class="business">
+   <div class="cover"><span>${b.icon||cat.icon}</span>
+    <span class="demo">مثال تجريبي</span>
+    <button class="fav ${favorites.has(b.id)?"saved":""}" data-fav="${b.id}" aria-label="إضافة للمفضلة">${favorites.has(b.id)?"♥":"♡"}</button>
+   </div>
+   <div class="business-body">
+    <h3>${escapeHTML(b.name)}</h3>
+    <div class="meta">${cat.icon} ${cat.name} · 📍 ${escapeHTML(b.wilaya)}</div>
+    <div class="rating">★ ${Number(b.rating).toFixed(1)} <span class="meta">(تقييم توضيحي)</span></div>
+    <p class="description">${escapeHTML(b.description)}</p>
+    <div class="card-bottom">
+     <span class="meta">بيانات غير مؤكدة</span>
+     <button class="btn outline" data-details="${b.id}">التفاصيل</button>
+    </div>
+   </div>
+  </article>`;
+ }).join("");
+ $("emptyState").style.display=list.length?"none":"block";
+ $("businessCount").textContent=businesses.length;
+ $("businessCards").querySelectorAll("[data-fav]").forEach(btn=>btn.onclick=()=>{
+  const id=Number(btn.dataset.fav);
+  favorites.has(id)?favorites.delete(id):favorites.add(id);
+  renderBusinesses();
+ });
+ $("businessCards").querySelectorAll("[data-details]").forEach(btn=>btn.onclick=()=>{
+  const b=businesses.find(x=>x.id===Number(btn.dataset.details));
+  const cat=categories.find(c=>c.key===b.category);
+  showToast(`${b.name} — ${cat.name}، ${b.wilaya}. هذه بطاقة تجريبية ولا تتضمن اتصالًا موثقًا.`);
+ });
+}
+function showToast(message){
+ $("toast").textContent=message;$("toast").classList.add("show");
+ clearTimeout(showToast.timer);
+ showToast.timer=setTimeout(()=>$("toast").classList.remove("show"),3500);
+}
+function runSearch(){
+ $("filterSearch").value=$("heroSearch").value;
+ $("filterWilaya").value=$("heroWilaya").value;
+ onlyFavorites=false;
+ $("favoritesBtn").classList.remove("primary");
+ renderBusinesses();
+ $("directory").scrollIntoView({behavior:"smooth"});
+}
+$("searchBtn").onclick=runSearch;
+$("heroSearch").addEventListener("keydown",e=>{if(e.key==="Enter")runSearch()});
+["filterSearch","filterWilaya","filterCategory","sortSelect"].forEach(id=>{
+ $(id).addEventListener("input",()=>{
+  if(id==="filterCategory"){activeCategory=$("filterCategory").value;renderCategories()}
+  onlyFavorites=false;$("favoritesBtn").classList.remove("primary");renderBusinesses();
+ });
+});
+$("favoritesBtn").onclick=()=>{
+ onlyFavorites=!onlyFavorites;
+ $("favoritesBtn").classList.toggle("primary",onlyFavorites);
+ $("favoritesBtn").textContent=onlyFavorites?"عرض كل الأنشطة":"❤️ المفضلة فقط";
+ renderBusinesses();
+};
+$("themeBtn").onclick=()=>{
+ document.body.classList.toggle("dark");
+ $("themeBtn").textContent=document.body.classList.contains("dark")?"☀️":"🌙";
+};
+function openModal(){$("businessModal").classList.add("open")}
+function closeModal(){$("businessModal").classList.remove("open")}
+$("openForm").onclick=openModal;$("openForm2").onclick=openModal;$("closeForm").onclick=closeModal;
+$("businessModal").addEventListener("click",e=>{if(e.target===$("businessModal"))closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+$("businessForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=$("ownerName").value.trim();
+ const category=$("ownerCategory").value;
+ const wilaya=$("ownerWilaya").value;
+ const description=$("ownerDescription").value.trim();
+ if(!name||!category||!wilaya||!description)return;
+ businesses.push({
+  id:Math.max(0,...businesses.map(b=>b.id))+1,
+  name,category,wilaya,description,rating:0,icon:"🏪"
+ });
+ $("businessForm").reset();
+ closeModal();
+ activeCategory="";onlyFavorites=false;
+ $("filterSearch").value="";$("filterWilaya").value="";
+ $("filterCategory").value="";$("sortSelect").value="default";
+ renderCategories();renderBusinesses();
+ showToast("تمت الإضافة إلى هذه الصفحة التجريبية فقط. لن تُحفظ بعد إعادة تحميل الموقع.");
+ $("directory").scrollIntoView({behavior:"smooth"});
+});
+$("year").textContent=new Date().getFullYear();
+renderCategories();renderBusinesses();
+</script>
+</body>
+</html>
